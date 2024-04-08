@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Users</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  button {
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<h2>User List</h2>
+<table id="userTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>CPF</th>
+      <th>Phone</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="userTableBody">
+  </tbody>
+</table>
+<button onclick="deleteUser()">Delete User</button>
+
+<script>
+  // Array de usuários
+  let users = [
+    { name: "JOÃO DA SILVA", cpf: "123.456.789-00", phone: "(123) 456-7890" },
+    { name: "MARIA DOS ANJOS", cpf: "987.654.321-00", phone: "(987) 654-3210" },
+    { name: "FELIPE CAMARGO", cpf: "555.123.456-00", phone: "(555) 123-4567" }
+  ];
+
+  // Função para mostrar os usuários na tabela
+  function showUsers() {
+    const userTableBody = document.getElementById('userTableBody');
+    userTableBody.innerHTML = '';
+    users.forEach(user => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${user.name}</td>
+        <td>${user.cpf}</td>
+        <td>${user.phone}</td>
+        <td><button onclick="deleteUserByParams('${user.name}', '${user.cpf}', '${user.phone}')">Delete</button></td>
+      `;
+      userTableBody.appendChild(tr);
+    });
+  }
+
+  // Função para deletar um usuário por parâmetros
+  function deleteUserByParams(name, cpf, phone) {
+    users = users.filter(user => user.name !== name || user.cpf !== cpf || user.phone !== phone);
+    showUsers();
+  }
+
+  // Mostrar os usuários inicialmente
+  showUsers();
+</script>
+</body>
+</html>
