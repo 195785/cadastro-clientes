@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adicionar Novo Dado</title>
+</head>
+<body>
+<h2>Adicionar Novo Dado</h2>
+<form id="dadosForm">
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome"><br><br>
+    
+    <label for="cpf">CPF:</label><br>
+    <input type="text" id="cpf" name="cpf"><br><br>
+    
+    <label for="telefone">Telefone:</label><br>
+    <input type="text" id="telefone" name="telefone"><br><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    
+    <button type="button" onclick="adicionarDado()">Adicionar Dado</button>
+</form>
+<div id="dadosAdicionados"></div>
+
+<script>
+function adicionarDado() {
+    const nome = document.getElementById("nome").value;
+    const cpf = document.getElementById("cpf").value;
+    const telefone = document.getElementById("telefone").value;
+    const email = document.getElementById("email").value;
+    
+    const dadosAdicionados = document.getElementById("dadosAdicionados");
+    const novoDado = document.createElement("p");
+    novoDado.textContent = `Nome: ${nome}, CPF: ${cpf}, Telefone: ${telefone}, Email: ${email}`;
+    dadosAdicionados.appendChild(novoDado);
+}
+</script>
+</body>
+</html>
